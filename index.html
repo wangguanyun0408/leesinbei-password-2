@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
-            background-color: #0a0a1a;
+            background-color: #04030d; /* 更深的午夜藍底色 */
             color: white;
             overflow: hidden;
             display: flex;
@@ -22,94 +22,158 @@
         /* --- 登入介面樣式 --- */
         #login-container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             padding: 50px 40px;
             border-radius: 20px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 0 30px rgba(255, 126, 179, 0.3);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 40px rgba(212, 93, 106, 0.2);
             z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        #login-container h1 { font-size: 1.8rem; margin-bottom: 10px; }
-        #login-container p { color: #ddd; margin-bottom: 25px; }
+        #login-container h1 { font-size: 1.8rem; margin-bottom: 10px; font-weight: normal; letter-spacing: 2px;}
+        #login-container p { color: #ccc; margin-bottom: 25px; letter-spacing: 1px;}
 
         input {
             padding: 12px; margin-bottom: 20px; border: none;
             border-radius: 8px; font-size: 16px; width: 80%;
-            text-align: center; background: rgba(255, 255, 255, 0.9);
+            text-align: center; background: rgba(255, 255, 255, 0.85);
+            outline: none;
+            transition: 0.3s;
         }
+        
+        input:focus { background: rgba(255, 255, 255, 1); box-shadow: 0 0 15px rgba(212, 93, 106, 0.5); }
 
         .btn {
-            padding: 12px 30px;
-            background: linear-gradient(45deg, #ff7eb3, #ff758c);
+            padding: 12px 35px;
+            background: linear-gradient(135deg, #852d6a, #d45d6a);
             border: none; border-radius: 25px; color: white;
             font-size: 16px; font-weight: bold; cursor: pointer;
-            transition: 0.3s; box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+            transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 93, 106, 0.4);
+            letter-spacing: 1px;
         }
 
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 117, 140, 0.6); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 25px rgba(212, 93, 106, 0.7); }
 
-        #error-msg { color: #ff4d4d; margin-top: 15px; font-size: 0.9rem; display: none; }
+        #error-msg { color: #ff6b6b; margin-top: 15px; font-size: 0.9rem; display: none; }
 
         /* --- 動畫與祝福頁面樣式 --- */
         #animation-container {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            /* 這裡設定唯美的黃昏漸層背景 */
-            background: linear-gradient(to bottom, #2b4162, #fa9c7a);
+            /* 你的名字風格：從深紫藍到晚霞粉橘的多層次漸層 */
+            background: linear-gradient(180deg, #04030d 0%, #171138 25%, #421e5c 50%, #852d6a 75%, #d45d6a 100%);
             display: none;
+            overflow: hidden;
         }
 
-        /* 巨大的流星墜落特效 */
-        .shooting-star {
+        /* 滿天星空點綴 */
+        .stars {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(1.5px 1.5px at 10% 20%, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 25% 50%, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40% 10%, #fff, rgba(0,0,0,0)),
+                radial-gradient(2.5px 2.5px at 60% 80%, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 75% 30%, #fff, rgba(0,0,0,0)),
+                radial-gradient(1.5px 1.5px at 90% 70%, rgba(255,255,255,0.6), rgba(0,0,0,0));
+            background-size: 150px 150px;
+            opacity: 0.5;
+            animation: twinkle 4s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        /* 你的名字風格：分裂的雙彗星主體 */
+        .comet-main {
             position: absolute;
-            top: -200px;
-            left: 50%;
-            width: 6px;
-            height: 200px;
-            /* 流星的光芒漸層 */
-            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,150,200,0.8) 40%, rgba(255,255,255,0) 100%);
-            transform: translateX(-50%) rotate(15deg); /* 稍微傾斜落下 */
+            top: -300px;
+            left: 70%;
+            width: 8px;
+            height: 400px; /* 超長拖尾 */
+            /* 彗星核心亮白，拖尾轉為青藍色再化為透明粉色 */
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(125, 226, 255, 0.9) 15%, rgba(255, 126, 179, 0.4) 60%, transparent 100%);
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 -5px 30px #fff, 0 0 50px #7de2ff, 0 0 100px #ff7eb3;
+            transform: rotate(35deg); /* 傾斜墜落角度 */
             opacity: 0;
-            border-radius: 50%;
-            box-shadow: 0 0 30px #fff, 0 0 50px #ff7eb3;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.8));
         }
 
-        .shooting-star.animate {
-            animation: shootDown 2.5s ease-in forwards;
+        /* 分裂出來的小彗星碎片 */
+        .comet-fragment {
+            position: absolute;
+            top: -300px;
+            left: 68%;
+            width: 4px;
+            height: 200px;
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255, 126, 179, 0.8) 20%, transparent 100%);
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 0 20px #fff, 0 0 40px #ff7eb3;
+            transform: rotate(33deg); /* 角度稍微不同，營造分離感 */
+            opacity: 0;
+        }
+
+        /* 彗星動畫 */
+        .comet-main.animate {
+            animation: fallMain 4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
             animation-delay: 0.5s;
         }
-
-        @keyframes shootDown {
-            0% { top: -200px; opacity: 1; transform: translateX(-50%) rotate(15deg) scale(1); }
-            100% { top: 120vh; opacity: 0; transform: translateX(-30vw) rotate(15deg) scale(0.5); }
+        .comet-fragment.animate {
+            animation: fallFragment 4.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+            animation-delay: 0.6s;
         }
 
-        /* 祝福文字區塊 */
-        .greeting-text {
+        @keyframes fallMain {
+            0% { top: -300px; left: 85%; opacity: 1; transform: rotate(35deg) scale(1); }
+            100% { top: 120vh; left: 10%; opacity: 0; transform: rotate(35deg) scale(1.3); }
+        }
+        @keyframes fallFragment {
+            0% { top: -300px; left: 83%; opacity: 1; transform: rotate(33deg) scale(0.8); }
+            100% { top: 120vh; left: 5%; opacity: 0; transform: rotate(33deg) scale(1); }
+        }
+
+        /* 祝福文字區塊 - 使用 Flexbox 絕對置中解決歪斜問題 */
+        .greeting-wrapper {
             position: absolute;
-            top: 50%; left: 50%; transform: translate(-50%, -50%);
-            text-align: center; opacity: 0; width: 90%;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             z-index: 5;
+            pointer-events: none; /* 讓點擊事件可以穿透 */
+        }
+
+        .greeting-text {
+            text-align: center;
+            opacity: 0;
+            pointer-events: auto; /* 恢復按鈕的點擊能力 */
         }
 
         .greeting-text.show {
             animation: fadeInText 3s forwards;
-            animation-delay: 1.5s; /* 流星劃過一半後文字浮現 */
+            animation-delay: 1.8s; /* 等彗星畫面最美的時候文字浮現 */
         }
 
         .greeting-text h2 {
-            font-size: 3rem; margin-bottom: 10px; color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3); letter-spacing: 2px;
+            font-size: 3.5rem; margin-bottom: 15px; color: #ffffff;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 40px rgba(212, 93, 106, 0.8);
+            letter-spacing: 4px;
+            font-weight: bold;
         }
 
         .greeting-text p {
-            font-size: 1.2rem; color: #f0f0f0; margin-bottom: 30px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            font-size: 1.3rem; color: #fdfdfd; margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
         }
 
         @keyframes fadeInText {
-            from { opacity: 0; transform: translate(-50%, -40%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
+            from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
     </style>
 </head>
@@ -125,17 +189,21 @@
     </div>
 
     <div id="animation-container">
-        <div class="shooting-star"></div>
+        <div class="stars"></div>
         
-        <div class="greeting-text">
-            <h2>李芯貝生日快樂！</h2>
-            <p>看著流星劃過夜空，所有好運都在向你靠近。</p>
-            <button class="btn" onclick="replayAnimation()">再看一次</button>
+        <div class="comet-main"></div>
+        <div class="comet-fragment"></div>
+        
+        <div class="greeting-wrapper">
+            <div class="greeting-text">
+                <h2>李芯貝生日快樂！</h2>
+                <p>看著流星劃過夜空，所有好運都在向你靠近。</p>
+                <button class="btn" onclick="replayAnimation()">再看一次</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // 【在這裡修改密碼】
         const correctPassword = "0516"; 
 
         function unlockSurprise() {
@@ -147,7 +215,8 @@
                 document.getElementById('animation-container').style.display = 'block';
 
                 setTimeout(() => {
-                    document.querySelector('.shooting-star').classList.add('animate');
+                    document.querySelector('.comet-main').classList.add('animate');
+                    document.querySelector('.comet-fragment').classList.add('animate');
                     document.querySelector('.greeting-text').classList.add('show');
                 }, 100);
             } else {
@@ -155,18 +224,18 @@
             }
         }
 
-        // 重新播放動畫的功能
         function replayAnimation() {
-            const star = document.querySelector('.shooting-star');
+            const cometMain = document.querySelector('.comet-main');
+            const cometFrag = document.querySelector('.comet-fragment');
             const text = document.querySelector('.greeting-text');
             
-            // 先移除動畫 class
-            star.classList.remove('animate');
+            cometMain.classList.remove('animate');
+            cometFrag.classList.remove('animate');
             text.classList.remove('show');
             
-            // 重新觸發動畫 (使用一點點延遲讓瀏覽器重新渲染)
             setTimeout(() => {
-                star.classList.add('animate');
+                cometMain.classList.add('animate');
+                cometFrag.classList.add('animate');
                 text.classList.add('show');
             }, 50);
         }
