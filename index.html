@@ -355,29 +355,42 @@
                 errorMsg.style.display = 'block';
             }
         }
-
-        function startScene1Sequence() {
-            document.querySelector('.comet-main').classList.add('animate');
-            document.querySelector('.comet-fragment').classList.add('animate');
-            
+        
+// --- 場景 1 邏輯 ---
+        
+       function startScene1Sequence() {
+            // 文字浮現
             setTimeout(() => {
                 document.getElementById('greeting-text-1').classList.add('show-text');
             }, 1800); 
 
+            // 在文字浮現後，才顯示「點擊畫面繼續」的按鈕，讓她有時間先看動畫
             setTimeout(() => {
-                switchScene('#scene-1', '#scene-2');
-                startScene2Sequence();
-            }, 5500); 
+                document.getElementById('hint-1').classList.add('show');
+            }, 5000); 
         }
 
+        // 由第一頁點擊觸發，前往第二頁
+        function goToScene2() {
+            switchScene('#scene-1', '#scene-2');
+            startScene2Sequence();
+        }
+
+        // --- 場景 2 邏輯 ---
         function startScene2Sequence() {
             setTimeout(() => {
                 document.getElementById('greeting-text-2').classList.add('show-text');
             }, 1000);
 
+            // 顯示第二頁的「點擊繼續」按鈕
             setTimeout(() => {
-                switchScene('#scene-2', '#scene-3');
-            }, 6000); 
+                document.getElementById('hint-2').classList.add('show');
+            }, 4000); 
+        }
+
+        // 由第二頁點擊觸發，前往第三頁（最後一頁）
+        function goToScene3() {
+            switchScene('#scene-2', '#scene-3');
         }
 
         function switchScene(fromSceneId, toSceneId) {
@@ -386,10 +399,11 @@
         }
 
         function replayAnimationFlow() {
-            document.querySelector('.comet-main').classList.remove('animate');
-            document.querySelector('.comet-fragment').classList.remove('animate');
+            // 重新播放時，把所有隱藏的文字和按鈕重置
             document.getElementById('greeting-text-1').classList.remove('show-text');
             document.getElementById('greeting-text-2').classList.remove('show-text');
+            document.getElementById('hint-1').classList.remove('show');
+            document.getElementById('hint-2').classList.remove('show');
             
             switchScene('#scene-3', '#scene-1');
             
