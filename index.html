@@ -10,7 +10,6 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80">
     <style>
-    <style>
         /* 基礎設定 */
         body {
             margin: 0;
@@ -114,7 +113,7 @@
         }
         
         #greeting-text-2 p { padding-left: 3px; transform: translateX(18px); }
-      /*  #greeting-text-1 p { padding-left: 3px; transform: translateX(-10px); }*/
+      /* #greeting-text-1 p { padding-left: 3px; transform: translateX(-10px); }*/
         
      /* 👇 新增：「點擊畫面繼續」的提示文字樣式 */
         .continue-hint {
@@ -243,6 +242,9 @@
             .scene-3-poem { font-size: 3.5vw; line-height: 1.6; margin: 15px 0; }
             .scene-3-img-placeholder { width: 110px; height: 110px; font-size: 70px; margin-bottom: 5px;}
             .btn { padding: 12px 35px; font-size: 16px; }
+
+            /* 手機版提示文字調整 */
+            .continue-hint { font-size: 0.9rem; bottom: 30px; padding: 10px 20px; }
         }
 
         @keyframes fadeInBlurText {
@@ -297,10 +299,12 @@
                 <div class="meteor meteor-blue" style="left: 65%; width: 3px; height: 210px; animation-duration: 4.1s; animation-delay: 2.3s;"></div>
                 <div class="meteor meteor-pink" style="left: 105%; width: 5px; height: 380px; animation-duration: 2.6s; animation-delay: 0.6s;"></div>
             </div>
-                <div id="greeting-text-1" class="greeting-text-block">
+            <div id="greeting-text-1" class="greeting-text-block">
                 <h2>李芯貝生日快樂！</h2>
                 <p>願妳的20歲，能如看到流星般幸運</p>
             </div>
+            
+            <div id="hint-1" class="continue-hint" onclick="goToScene2()">點擊畫面繼續 ✨</div>
         </div>
         
         <div id="scene-2" class="scene">
@@ -310,6 +314,8 @@
                 <h2>給李芯貝的滿天星空</h2>
                 <p>願你的20歲，能在各式各樣的地方閃耀</p>
             </div>
+
+            <div id="hint-2" class="continue-hint" onclick="goToScene3()">點擊畫面繼續 ✨</div>
         </div>
         
         <div id="scene-3" class="scene">
@@ -356,9 +362,8 @@
             }
         }
         
-// --- 場景 1 邏輯 ---
-        
-       function startScene1Sequence() {
+        // --- 場景 1 邏輯 ---
+        function startScene1Sequence() {
             // 文字浮現
             setTimeout(() => {
                 document.getElementById('greeting-text-1').classList.add('show-text');
