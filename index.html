@@ -115,6 +115,23 @@
         
         #greeting-text-2 p { padding-left: 3px; transform: translateX(18px); }
       /*  #greeting-text-1 p { padding-left: 3px; transform: translateX(-10px); }*/
+        
+     /* 👇 新增：「點擊畫面繼續」的提示文字樣式 */
+        .continue-hint {
+            position: absolute; bottom: 40px; font-size: 1rem; color: rgba(255,255,255,0.8);
+            letter-spacing: 3px; cursor: pointer; z-index: 20;
+            opacity: 0; pointer-events: none; transition: opacity 1s;
+            animation: pulseHint 2s infinite; text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            padding: 15px 30px; border-radius: 30px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+        }
+        .continue-hint.show { opacity: 1; pointer-events: auto; }
+        .continue-hint:hover { background: rgba(255,255,255,0.2); }
+
+        @keyframes pulseHint {
+            0% { opacity: 0.4; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.4; transform: scale(0.95); }
+        }
 
         /* --- 場景 1 (新海誠彗星) --- */
        #scene-1 { background: linear-gradient(180deg, #04030d 0%, #171138 25%, #421e5c 50%, #852d6a 75%, #d45d6a 100%); }
@@ -249,7 +266,7 @@
         <div id="login-container">
             <div class="login-emoji-placeholder">😉</div>
             <h1>🎁 生日小動畫！🎁</h1>
-            <h1>請輸入密碼解鎖🔓</h1>
+            <h1>🔓請輸入密碼解鎖🔓</h1>
             <p>密碼提示：四位數！</p>
             <input type="password" id="password-input" placeholder="輸入密碼">
             <br>
