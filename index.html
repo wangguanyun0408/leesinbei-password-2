@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>李芯貝的生日祝福</title>
+    
     <meta name="description" content="這是一份獨一無二屬於妳的小網站✨">
     <meta property="og:title" content="這是一份獨一無二屬於妳的小網站✨">
     <meta property="og:description" content="這是一份獨一無二屬於妳的小網站✨">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80">
+
     <style>
         /* 基礎設定 */
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: 'Segoe UI', 'Microsoft JhengHei', 'Open Sans', sans-serif;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow: hidden; height: 100vh;
+            display: flex; justify-content: center; align-items: center;
             background-color: #fce4ec; 
         }
 
@@ -34,15 +32,12 @@
         #login-state-wrapper.hide { opacity: 0; pointer-events: none; }
 
         #login-container {
-            text-align: center;
-            background: rgba(255, 255, 255, 0.05); 
+            text-align: center; background: rgba(255, 255, 255, 0.05); 
             padding: 60px 50px; border-radius: 25px;
             backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 0 50px rgba(212, 93, 106, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 50px rgba(212, 93, 106, 0.15); border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex; flex-direction: column; align-items: center;
-            max-width: 90%;
-            box-sizing: border-box;
+            max-width: 90%; box-sizing: border-box;
         }
 
         .login-emoji-placeholder {
@@ -52,15 +47,8 @@
             box-shadow: 0 0 20px rgba(212, 93, 106, 0.3); border: 2px solid rgba(255,255,255,0.2);
         }
 
-        #login-container h1 { 
-            font-size: 2.2rem; margin: 0 0 15px 0; font-weight: normal; 
-            letter-spacing: 3px; color: #ffffff; text-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        
-        #login-container p { 
-            color: #eeeeee; margin: 0 0 35px 0; letter-spacing: 1.5px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
+        #login-container h1 { font-size: 2.2rem; margin: 0 0 15px 0; font-weight: normal; letter-spacing: 3px; color: #ffffff; text-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        #login-container p { color: #eeeeee; margin: 0 0 35px 0; letter-spacing: 1.5px; text-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 
         input {
             padding: 15px; margin-bottom: 25px; border: none;
@@ -68,21 +56,17 @@
             text-align: center; background: rgba(255, 255, 255, 0.85);
             outline: none; transition: 0.3s; color: #d45d6a; letter-spacing: 5px; 
         }
-        
         input:focus { background: rgba(255, 255, 255, 1); box-shadow: 0 0 20px rgba(212, 93, 106, 0.6); }
 
         .btn {
             padding: 15px 45px; background: linear-gradient(135deg, #d45d6a, #c2185b);
-            border: none; border-radius: 30px; color: white;
-            font-size: 18px; font-weight: bold; cursor: pointer;
+            border: none; border-radius: 30px; color: white; font-size: 18px; font-weight: bold; cursor: pointer;
             transition: 0.3s; box-shadow: 0 6px 20px rgba(212, 93, 106, 0.4); letter-spacing: 2px;
         }
-
         .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(212, 93, 106, 0.7); }
-
         #error-msg { color: #ffffff; margin-top: 20px; font-size: 1rem; display: none; text-shadow: 0 1px 3px rgba(0,0,0,0.2);}
 
-        /* --- 2. 動畫頁面樣式 --- */
+        /* --- 2. 動畫頁面與場景樣式 --- */
         #animation-container {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             display: none; overflow: hidden; background-color: #04030d; 
@@ -93,18 +77,15 @@
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             opacity: 0; pointer-events: none; transition: opacity 1.5s ease-in-out; z-index: 1;
         }
-        
         .scene.active { opacity: 1; pointer-events: auto; z-index: 2; }
 
-        .greeting-text-block { text-align: center; pointer-events: none; z-index: 5; width: 100%; }
+        .greeting-text-block { text-align: center; pointer-events: none; z-index: 10; width: 100%; position: relative; }
         .greeting-text-block.show-text { animation: fadeInBlurText 3s forwards; }
 
-        /* 電腦版文字設定 */
         .greeting-text-block h2 {
             font-size: 3.8rem; margin-bottom: 20px; color: #ffffff;
             text-shadow: 0 0 20px rgba(255,255,255,0.5), 0 0 50px rgba(212, 93, 106, 0.8);
-            letter-spacing: 5px; font-weight: bold;
-            padding-left: 5px; transform: translateX(15px); 
+            letter-spacing: 5px; font-weight: bold; padding-left: 5px; transform: translateX(15px); 
         }
 
         .greeting-text-block p {
@@ -113,9 +94,8 @@
         }
         
         #greeting-text-2 p { padding-left: 3px; transform: translateX(18px); }
-      /* #greeting-text-1 p { padding-left: 3px; transform: translateX(-10px); }*/
-        
-     /* 👇 新增：「點擊畫面繼續」的提示文字樣式 */
+
+        /* 「點擊畫面繼續」的提示文字樣式 */
         .continue-hint {
             position: absolute; bottom: 40px; font-size: 1rem; color: rgba(255,255,255,0.8);
             letter-spacing: 3px; cursor: pointer; z-index: 20;
@@ -144,52 +124,23 @@
             background-size: 150px 150px; opacity: 0.5; animation: twinkle 4s infinite alternate;
         }
 
-        /* 👇 【新增： Scene 2 專屬排版】 */
-        /* 使用全新的「超級閃亮動畫」，讓星星閃得更亮 */
-        .stars-bright {
-            opacity: 1.0; /* 基礎亮度加到最高 */
-            animation: twinkle-bright 3s infinite alternate; /* 閃爍更快且更亮 */
-        }
+        .stars-bright { opacity: 1.0; animation: twinkle-bright 3s infinite alternate; }
 
-        /* 控制一般星星闪烁的动画 (0.3 -> 0.7) */
         @keyframes twinkle { 0% { opacity: 0.3; } 100% { opacity: 0.7; } }
-
-        /* 👇 【新增：超級閃亮動畫】 (0.6 -> 1.0) */
-        /* 讓 Scene 2 的星星閃爍範圍大幅提升亮度 */
         @keyframes twinkle-bright { 0% { opacity: 0.6; } 100% { opacity: 1.0; } }
-        
-        /* --- 場景 1 (新海誠彗星) --- */
-       #scene-1 { background: linear-gradient(180deg, #04030d 0%, #171138 25%, #421e5c 50%, #852d6a 75%, #d45d6a 100%); }
-        
-        .stars {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(1.5px 1.5px at 10% 20%, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 25% 50%, rgba(255,255,255,0.8), rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 40% 10%, #fff, rgba(0,0,0,0)),
-                radial-gradient(2.5px 2.5px at 60% 80%, rgba(255,255,255,0.9), rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 75% 30%, #fff, rgba(0,0,0,0));
-            background-size: 150px 150px; opacity: 0.5; animation: twinkle 4s infinite alternate;
-        }
 
+        /* --- 場景 1 (新海誠雙色漫天流星雨) --- */
+        #scene-1 { background: linear-gradient(180deg, #04030d 0%, #171138 25%, #421e5c 50%, #852d6a 75%, #d45d6a 100%); }
+        
         /* ☄️ 流星雨終極設定 */
         .meteor-shower-wrapper {
-            position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 3;
-            pointer-events: none;
+            position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 3; pointer-events: none;
         }
-
-        .meteor {
-            position: absolute; top: -50vh; opacity: 0; border-radius: 50% 50% 0 0;
-            transform: rotate(35deg); 
-        }
-
+        .meteor { position: absolute; top: -50vh; opacity: 0; border-radius: 50% 50% 0 0; transform: rotate(35deg); }
         .meteor-blue { background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(125, 226, 255, 0.9) 20%, transparent 100%); box-shadow: 0 0 10px #fff, 0 0 20px #7de2ff; }
         .meteor-pink { background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255, 126, 179, 0.8) 20%, transparent 100%); box-shadow: 0 0 8px #fff, 0 0 15px #ff7eb3; }
 
-        /* 當場景開啟時，套用無限循環掉落動畫 */
-        #scene-1.active .meteor {
-            animation: fallMeteorRain infinite linear;
-        }
+        #scene-1.active .meteor { animation: fallMeteorRain infinite linear; }
 
         @keyframes fallMeteorRain {
             0% { opacity: 0; transform: translate(0, 0) rotate(35deg) scale(0.8); }
@@ -198,93 +149,104 @@
             100% { opacity: 0; transform: translate(-100vw, 150vh) rotate(35deg) scale(1.2); }
         }
 
-        /* --- 場景 2 (流星雨森林) --- */
-        #scene-2 {
-            background-color: #04030d; border: 20px solid rgba(255,255,255,0.05); box-sizing: border-box;
-        }
-        
-        /* --- 場景 3 (最後祝福) --- */
-        #scene-3 {
-            background-color: #f8bbd0;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
+        /* --- 場景 2 & 3 & 4 樣式 --- */
+        #scene-2 { background-color: #04030d; border: 20px solid rgba(255,255,255,0.05); box-sizing: border-box; }
+        #scene-3 { background-color: #f8bbd0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
         .cake-emoji-placeholder { font-size: 100px; margin-bottom: 5px; }
         .scene-3-text { text-align: center; color: #c2185b; text-shadow: 0 1px 3px rgba(255,255,255,0.5); }
         .scene-3-text h3 { font-size: 1.6rem; margin: 0 0 5px 0; font-weight: normal; letter-spacing: 3px; color: #d81b60; }
         .scene-3-text h2 { font-size: 2.8rem; margin: 0; font-weight: bold; letter-spacing: 4px; }
-        
-        .scene-3-poem {
-            font-size: 1.3rem; color: #d81b60; letter-spacing: 2px;
-            line-height: 1.6; margin: 25px 0; 
-            white-space: pre-wrap; text-align: center;
+        .scene-3-poem { font-size: 1.3rem; color: #d81b60; letter-spacing: 2px; line-height: 1.6; margin: 25px 0; white-space: pre-wrap; text-align: center; }
+        .scene-3-img-placeholder { width: 160px; height: 160px; background-color: #ffffff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 100px; margin-bottom: 15px; box-shadow: 0 0 30px rgba(0,0,0,0.05); border: 8px solid #ffffff; }
+
+        /* 👇 【新增：場景 4 (秘密信紙頁)】 */
+        #scene-4 {
+            background-color: #fdfdfd; /* 乾淨的白色背景 */
+            /* 加上一點微微的紙張紋理感 */
+            background-image: linear-gradient(rgba(200, 200, 200, 0.1) 1px, transparent 1px);
+            background-size: 100% 30px; 
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            overflow-y: auto; /* 若字太多可以滑動 */
+            color: #4a4a4a;
         }
 
-        .scene-3-img-placeholder {
-            width: 160px; height: 160px; background-color: #ffffff;
-            border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            font-size: 100px; margin-bottom: 15px; box-shadow: 0 0 30px rgba(0,0,0,0.05); border: 8px solid #ffffff;
+        .letter-container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-top: 5vh;
+            border-top: 8px solid #f48fb1; /* 粉色信封封口裝飾 */
         }
+
+        .letter-title {
+            font-size: 2rem;
+            color: #d81b60;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            border-bottom: 2px dashed #f8bbd0;
+            padding-bottom: 15px;
+        }
+
+        .letter-content {
+            font-size: 1.2rem;
+            line-height: 2;
+            letter-spacing: 1.5px;
+            color: #555;
+            white-space: pre-wrap; /* 保持你輸入的換行 */
+        }
+
+        .replay-btn-small {
+            margin-top: 40px;
+            padding: 10px 25px;
+            background: #eeeeee;
+            color: #888;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .replay-btn-small:hover { background: #e0e0e0; color: #555; }
+
 
         /* =========================================
-           📱 手機版專屬自動排版 (絕對不換行魔法)
+           📱 手機版專屬自動排版
            ========================================= */
         @media screen and (max-width: 768px) {
             #login-container { padding: 40px 20px; }
             #login-container h1 { font-size: 1.5rem; }
             .login-emoji-placeholder { width: 90px; height: 90px; font-size: 55px; margin-bottom: 15px;}
-            input { letter-spacing: 2px; }
-            
-            /* 第一、二頁：強制不換行 + 根據手機寬度自動縮放 */
-            .greeting-text-block { padding: 0 10px; box-sizing: border-box; }
-            
-            .greeting-text-block h2 {
-                font-size: 6.5vw; /* 字體根據手機寬度縮放 */
-                letter-spacing: 2px;
-                white-space: nowrap; /* 🌟 絕對不換行 */
-                padding-left: 0; 
-                transform: none; /* 手機空間太小，取消推移避免撞到螢幕邊緣 */
-            }
-            
-            #greeting-text-1 h2 {
-                transform: translateX(2vw);
-            }
-
-            .greeting-text-block p {
-                font-size: 4.2vw; /* 字體根據手機寬度縮放 */
-                letter-spacing: 1px;
-                white-space: nowrap; /* 🌟 絕對不換行 */
-            }
-            
-            #greeting-text-1 p, #greeting-text-2 p {
-                padding-left: 0;
-                transform: none; /* 手機空間太小，取消推移避免撞到螢幕邊緣 */
-            }
-
-            /* 第三頁字體等比縮小 */
+            .greeting-text-block { padding: 0 5px; box-sizing: border-box; }
+            .greeting-text-block h2 { font-size: 6.5vw; letter-spacing: 2px; white-space: nowrap; padding-left: 0; transform: translateX(3vw); }
+            #greeting-text-1 h2 { transform: translateX(10vw); }
+            .greeting-text-block p { font-size: 4.2vw; letter-spacing: 1px; white-space: nowrap; }
+            #greeting-text-1 p { transform: translateX(2vw); }
+            #greeting-text-2 p { transform: translateX(1vw); }
             .cake-emoji-placeholder { font-size: 70px; margin-bottom: 0; }
             .scene-3-text h3 { font-size: 4.5vw; white-space: nowrap; }
             .scene-3-text h2 { font-size: 7vw; white-space: nowrap; }
             .scene-3-poem { font-size: 3.5vw; line-height: 1.6; margin: 15px 0; }
             .scene-3-img-placeholder { width: 110px; height: 110px; font-size: 70px; margin-bottom: 5px;}
-            .btn { padding: 12px 35px; font-size: 16px; }
-
-            /* 手機版提示文字調整 */
+            
+            /* 手機版按鈕與信紙微調 */
             .continue-hint { font-size: 0.9rem; bottom: 30px; padding: 10px 20px; }
+            #scene-4 { padding: 20px; }
+            .letter-container { padding: 30px 20px; margin-top: 2vh; }
+            .letter-title { font-size: 1.6rem; }
+            .letter-content { font-size: 1.1rem; }
         }
 
         @keyframes fadeInBlurText {
             from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
-        }
-        @keyframes twinkle { 0% { opacity: 0.3; } 100% { opacity: 0.7; } }
-        @keyframes fallMain {
-            0% { top: -400px; left: 85%; opacity: 1; transform: rotate(35deg) scale(1); }
-            100% { top: 120vh; left: 10%; opacity: 0; transform: rotate(35deg) scale(1.3); }
-        }
-        @keyframes fallFragment {
-            0% { top: -400px; left: 83%; opacity: 1; transform: rotate(33deg) scale(0.8); }
-            100% { top: 120vh; left: 5%; opacity: 0; transform: rotate(33deg) scale(1); }
         }
     </style>
 </head>
@@ -334,11 +296,11 @@
         </div>
         
         <div id="scene-2" class="scene">
-            <div class="stars" style="opacity: 0.8; animation: twinkle 6s infinite;"></div>
+            <div class="stars stars-bright" style="animation: twinkle 6s infinite;"></div>
             
             <div id="greeting-text-2" class="greeting-text-block">
-                <h2>專屬的滿天星空</h2>
-                <p>願妳的20歲，能在各式各樣的地方閃耀</p>
+                <h2>給李芯貝的滿天星空</h2>
+                <p>願你的20歲，能在各式各樣的地方閃耀</p>
             </div>
 
             <div id="hint-2" class="continue-hint" onclick="goToScene3()">點擊此處繼續 ✨</div>
@@ -362,8 +324,28 @@
             <div class="scene-3-img-placeholder">🥳</div>
             
             <div class="scene-3-text">
-                <button class="btn" style="margin-top: 30px;" onclick="replayAnimationFlow()">再看一次</button>
+                <button class="btn" style="margin-top: 30px;" onclick="goToScene4()">我的小秘密被妳找到了</button>
             </div>
+        </div>
+
+        <div id="scene-4" class="scene">
+            <div class="letter-container">
+                <div class="letter-title">給芯貝的一封信 💌</div>
+                
+                <div class="letter-content">
+嗨，芯貝：
+
+這是我為妳準備的小驚喜，希望妳會喜歡滿天的流星雨！
+（你可以在這裡打上你所有想對她說的心裡話，
+不管是祝福、感謝，還是平時說不出口的秘密。）
+
+祝妳 20 歲生日快樂，未來的每一天都要開開心心！
+
+── 愛妳的ＯＯＯ
+                </div>
+            </div>
+            
+            <button class="replay-btn-small" onclick="replayAnimationFlow()">重新回味動畫</button>
         </div>
 
     </div>
@@ -390,18 +372,15 @@
         
         // --- 場景 1 邏輯 ---
         function startScene1Sequence() {
-            // 文字浮現
             setTimeout(() => {
                 document.getElementById('greeting-text-1').classList.add('show-text');
             }, 1800); 
 
-            // 在文字浮現後，才顯示「點擊畫面繼續」的按鈕，讓她有時間先看動畫
             setTimeout(() => {
                 document.getElementById('hint-1').classList.add('show');
             }, 500); 
         }
 
-        // 由第一頁點擊觸發，前往第二頁
         function goToScene2() {
             switchScene('#scene-1', '#scene-2');
             startScene2Sequence();
@@ -413,15 +392,19 @@
                 document.getElementById('greeting-text-2').classList.add('show-text');
             }, 1000);
 
-            // 顯示第二頁的「點擊繼續」按鈕
             setTimeout(() => {
                 document.getElementById('hint-2').classList.add('show');
             }, 500); 
         }
 
-        // 由第二頁點擊觸發，前往第三頁（最後一頁）
+        // --- 前往場景 3 ---
         function goToScene3() {
             switchScene('#scene-2', '#scene-3');
+        }
+
+        // --- 👇 前往場景 4 (信紙頁) ---
+        function goToScene4() {
+            switchScene('#scene-3', '#scene-4');
         }
 
         function switchScene(fromSceneId, toSceneId) {
@@ -429,14 +412,15 @@
             document.querySelector(toSceneId).classList.add('active');
         }
 
+        // --- 重新回味 ---
         function replayAnimationFlow() {
-            // 重新播放時，把所有隱藏的文字和按鈕重置
             document.getElementById('greeting-text-1').classList.remove('show-text');
             document.getElementById('greeting-text-2').classList.remove('show-text');
             document.getElementById('hint-1').classList.remove('show');
             document.getElementById('hint-2').classList.remove('show');
             
-            switchScene('#scene-3', '#scene-1');
+            // 從第四頁切換回第一頁
+            switchScene('#scene-4', '#scene-1');
             
             setTimeout(() => {
                 startScene1Sequence();
